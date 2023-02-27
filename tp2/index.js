@@ -3,7 +3,7 @@ import ManagerUsuarios from "./ManagerUsers.js";
 const manager = new ManagerUsuarios()
 
 const env = async() => {
-    let primeraConsulta = await manager.ManagerUsuarios
+    let primeraConsulta = await manager.consultarUsuarios()
     console.log(primeraConsulta)
 
     const usuario = {
@@ -13,7 +13,7 @@ const env = async() => {
         curso:"back-end"
     }
 
-    let result = await manager.crearUsuario(usuario)
+    let result = await manager.crearUsuarios(usuario)
 console.log(result)
 
     let segundaConsulta = await manager.consultarUsuarios();
