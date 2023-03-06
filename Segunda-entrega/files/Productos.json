@@ -1,0 +1,38 @@
+[
+	{
+		"code": "FGA01",
+		"title": "CDJ-2000",
+		"description": "Negro",
+		"price": 1400000,
+		"thumbnail": "no-image",
+		"stock": 15,
+		"id": 1
+	},
+	{
+		"code": "FGA02",
+		"title": "FLX-4",
+		"description": "Negra",
+		"price": 100000,
+		"thumbnail": "no-image",
+		"stock": 25,
+		"id": 2
+	},
+	{
+		"code": "FGA03",
+		"title": "DDJ-400",
+		"description": "Negra",
+		"price": 200000,
+		"thumbnail": "no-image",
+		"stock": 29,
+		"id": 3
+	},
+	{
+		"code": "FGA04",
+		"title": "CDJ-3000",
+		"description": "Negra",
+		"price": 3000000,
+		"thumbnail": "no-image",
+		"stock": 29,
+		"id": 4
+	}
+]
