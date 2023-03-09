@@ -1,4 +1,5 @@
 import fs from "fs";
+import express from "express";
 
 
 export default class ProductManager {
@@ -6,7 +7,7 @@ export default class ProductManager {
         this.products = [];
         this.path = "./files/Productos.json";
     }
-    
+    productServer = express();
     getProducts = async () => {
         try {
      
