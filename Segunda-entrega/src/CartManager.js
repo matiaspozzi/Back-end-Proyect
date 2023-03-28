@@ -1,3 +1,5 @@
+import fs from "fs";
+
 
 import { Blob } from "buffer";
 import ProductManager from "./ProductManager.js";
