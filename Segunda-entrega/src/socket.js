@@ -7,9 +7,9 @@ socket.connect = (server) => {
   
     socket.io.on("connection", async (socket) => {
       console.log(`cliente conectado`);
-      const products = await productManager.getProducts();
+      const productos = await productManager.getProducts();
 
-      socket.emit("products",products);
+      socket.emit("productos",productos);
     });
   };
   

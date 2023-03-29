@@ -30,12 +30,12 @@ router.get("/", async (req, res) => {
 
             return res.status(200).send({
                 status: "success",
-                message: { products: resultado },
+                message: { productos: resultado },
             });
         } else {
             return res.status(200).send({
                 status: "success",
-                message: { products: consulta },
+                message: { productos: consulta },
             });
         }
     } catch (error) {
