@@ -40,13 +40,13 @@ export default class CartManager {
             if (fs.existsSync(this.path)) {
                 const data = await fs.promises.readFile(this.path, 'utf-8');
                 const result = JSON.parse(data);
-                const otherCart = { id: result.length + 1, products: [] }
+                const otherCart = { id: result.length + 1, productos: [] }
                 result.push(otherCart)
                 await fs.promises.writeFile(this.path, JSON.stringify(result, null, "\t"));
                 return `Cart created`;
             } else {
 
-                const newCart = { id: this.cart.length + 1, products: [] }
+                const newCart = { id: this.cart.length + 1, productos: [] }
                 this.cart.push(newCart);
                 await fs.promises.writeFile(this.path, JSON.stringify(this.cart, null, "\t"));
                 return `Cart created`
@@ -71,8 +71,8 @@ export default class CartManager {
             const carts = await this.getCart();
             const cartIdFounded = carts.findIndex((cart) => cart.id === Number.parseInt(cId));
 
-            const products = await productmanager.getProducts();
-            const productIdFounded = products.findIndex((prod) => prod.id === Number.parseInt(idProd));
+            const productos = await productmanager.getProducts();
+            const productIdFounded = productos.findIndex((prod) => prod.id === Number.parseInt(idProd));
             if (cartIdFounded === -1) {
                 return `The cart with the id ${cId} does not exist in the file`
             }
@@ -96,16 +96,16 @@ export default class CartManager {
 
 
             const cartIdFound = carts.findIndex((cart) => cart.id === parseInt(cId));
-            const productIdFound = carts[cartIdFound].products.findIndex((prod) => prod.id === parseInt(idProd))
+            const productIdFound = carts[cartIdFound].productos.findIndex((prod) => prod.id === parseInt(idProd))
             if (cartIdFound !== -1) {
                 if (productIdFound !== -1) {
                     if (isNaN(quantity) || quantity <= 0) {
-                        carts[cartIdFound].products[productIdFound].quantity++;
+                        carts[cartIdFound].productos[productIdFound].quantity++;
                     } else {
-                        carts[cartIdFound].products[productIdFound].quantity += Number.parseInt(quantity)
+                        carts[cartIdFound].productos[productIdFound].quantity += Number.parseInt(quantity)
                     }
                 } else {
-                    carts[cartIdFound].products.push(productToAdd);
+                    carts[cartIdFound].productos.push(productToAdd);
                 }
                 await fs.promises.writeFile(this.path, JSON.stringify(carts, null, "\t"));
                 return carts;

@@ -5,14 +5,20 @@ import { Router } from "express";
 const router = Router();
 const productmanager=new ProductManager();
 
-router.get("/",async(req,res)=>{
-    const productos= await productmanager.getProducts();
+const productos= await productmanager.getProducts();
 
-    res.render("home",{productos});
+router.get("/",async(req,res)=>{
+    
+
+    res.render("home",{productos, style: "styles.css", title: "Products"});
 })
 
 router.get("/realtimeproducts", async (req,res)=>{
-   
-    res.render("realTimeProducts",{});
-})
+   res.render("realTimeProducts",{
+    productos,
+    style:"styles.css",
+    title:"Real Time Products",
+   });
+});
+
 export default router;

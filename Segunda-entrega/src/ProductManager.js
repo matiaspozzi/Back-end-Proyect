@@ -5,9 +5,9 @@ import socket from "./socket.js";
 
 export default class ProductManager {
     constructor() {
-        this.products = [];
+        this.productos = [];
         this.pathfiles = "./files";
-        this.path = "./files/Products.json";
+        this.path = "./files/Productos.json";
     }
 
     productServer = express();
@@ -22,6 +22,7 @@ export default class ProductManager {
         try {
             if (!fs.existsSync(this.pathfiles)) {
                 fs.mkdirSync(this.pathfiles)
+            return [];
             }
             if (fs.existsSync(this.path)) {
 
@@ -60,17 +61,17 @@ export default class ProductManager {
 
          
       
-            const products = await this.getProducts();
-            const productIndex = await products.findIndex((prod) => prod.code === productObject.code);
+            const productos = await this.getProducts();
+            const productIndex = await productos.findIndex((prod) => prod.code === productObject.code);
 
             if (productIndex === -1) {
-                products.length === 0
+                productos.length === 0
                     ? productObject = { id: 1, ...productObject }
-                    : productObject = { id: products[products.length - 1].id + 1, ...productObject }
-                products.push(productObject);
-                await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"));
-                socket.io.emit("products", products);
-                return products;
+                    : productObject = { id: productos[productos.length - 1].id + 1, ...productObject }
+                productos.push(productObject);
+                await fs.promises.writeFile(this.path, JSON.stringify(productos, null, "\t"));
+                socket.io.emit("productos", productos);
+                return productos;
             } else {
                 return `The product already exist in the list`
             }
@@ -118,12 +119,12 @@ export default class ProductManager {
             if (isNaN(id) || id <= 0) {
                 return `The id has not a valid value`
             }
-            const products = await this.getProducts()
+            const productos = await this.getProducts()
             let productFounded = products.findIndex((product) => product.id === Number.parseInt(id))
             if (productFounded !== -1) {
-                const valor = products.filter((event) => event.id != id);
+                const valor = productos.filter((event) => event.id != id);
                 await fs.promises.writeFile(this.path, JSON.stringify(valor, null, "\t"))
-                socket.io.emit("products", valor);
+                socket.io.emit("productos", valor);
                 return productFounded;
             } else {
                 return `The product with this id does not exist so can not be eliminated`;
@@ -136,7 +137,7 @@ export default class ProductManager {
     updateProduct = async (idUpdate, productUpdate) => {
         try {
 
-            const products = await this.getProducts();
+            const productos = await this.getProducts();
             if (!productUpdate) {
                 return res.status(400).send({
                     status: "error",
@@ -153,18 +154,18 @@ export default class ProductManager {
                     message: { error: "The ID of this product can not change" },
                 });
             }
-            let productExists = products.findIndex((product) => product.id === Number.parseInt(idUpdate))
+            let productExists = productos.findIndex((product) => product.id === Number.parseInt(idUpdate))
             if (productExists !== -1) {
 
 
-                const products = await this.getProducts();
+                const productos = await this.getProducts();
                 const productIdFound = products.findIndex((prod) => prod.id === parseInt(idUpdate));
           
                 if (productIdFound !== -1) {
-                  const updatedProduct = { ...products[productIdFound], ...productUpdate}
+                  const updatedProduct = { ...productos[productIdFound], ...productUpdate}
                   products[productIdFound] = updatedProduct;
-                  await fs.promises.writeFile(this.path,JSON.stringify(products, null, "\t"));
-                  return products;
+                  await fs.promises.writeFile(this.path,JSON.stringify(productos, null, "\t"));
+                  return productos;
                 } else {
                   return productIdFound
                 }

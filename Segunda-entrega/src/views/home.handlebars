@@ -1,17 +1,8 @@
-
-<div id="app">
-  <h1>Productos list</h1>
+<div>
   {{#each productos}}
-  <div style="color: rgba(255, 0, 0, 0.301);">
-    <br>
-    <p>{{this.title}}</p>
-    <p>{{this.description}}</p>
-    <p>{{this.code}}</p>
-    <p>{{this.status}}</p>
-    <p>{{this.price}}</p>
-    <p>{{this.category}}</p>
-    <p>{{this.stock}}</p>
-    
-  </div>
+    <div class="gallery" id="productos">
+      <h2>{{this.title}}</h2>
+      <p>{{this.description}}</p>
+    </div>
   {{/each}}
 </div>

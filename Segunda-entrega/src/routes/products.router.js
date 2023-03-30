@@ -1,5 +1,5 @@
-import ProductManager from '../ProductManager.js';
 import { Router } from "express";
+import ProductManager from '../ProductManager.js';
 import { uploader } from '../utils.js';
 const router = Router();
 
@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     try {
         const consulta = await manager.getProducts();
 
-        let limit = req.query.limit
+        const { limit } = req.query.limit
 
 
         if (!consulta) {

@@ -1,8 +1,12 @@
 <div id="productsList">
-    <p id="log"></p>
-    <h1>Products list to modified</h1>
+    {{#each productos}}
+     <div class="gallery">
+      <h2>{{this.title}}</h2>
+      <p>${{this.price}}</p>
+      <p>{{this.description}}</p>
     <div id="listproducts">
     </div>
+    {{/each}}
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="../public/js/index.js"></script>
